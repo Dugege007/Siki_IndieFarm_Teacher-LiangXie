@@ -5,6 +5,7 @@
  * xNode: https://github.com/Siccity/xNode
  ****************************************************************************/
 
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -169,3 +170,4 @@ namespace QFramework.Pro
         }
     }
 }
+#endif

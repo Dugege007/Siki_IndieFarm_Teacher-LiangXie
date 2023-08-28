@@ -5,6 +5,7 @@
  * xNode: https://github.com/Siccity/xNode
  ****************************************************************************/
 
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -313,3 +314,4 @@ namespace QFramework.Pro
         public List<IUnRegister> UnregisterList { get; } = new List<IUnRegister>();
     }
 }
+#endif

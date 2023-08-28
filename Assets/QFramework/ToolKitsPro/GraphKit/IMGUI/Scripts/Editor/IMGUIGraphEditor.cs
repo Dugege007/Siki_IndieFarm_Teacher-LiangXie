@@ -5,6 +5,7 @@
  * xNode: https://github.com/Siccity/xNode
  ****************************************************************************/
 
+#if UNITY_EDITOR
 using System;
 using System.Linq;
 using UnityEditor;
@@ -299,3 +300,4 @@ namespace QFramework.Pro
         }
     }
 }
+#endif
