@@ -110,6 +110,16 @@ namespace ProjectIndieFarm
 
                         grid[cellPos.x, cellPos.y].HasPlant = true;
                     }
+                    // 摘取果子
+                    else if (grid[cellPos.x, cellPos.y].HasPlant)
+                    {
+                        if (grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe)
+                        {
+                            PlantController.Instance.Plants[cellPos.x, cellPos.y].SetState(PlantState.Old);
+                            Global.FruitCount.Value++;
+                        }
+                    }
+
                 }
             }
 
@@ -154,6 +164,11 @@ namespace ProjectIndieFarm
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
             GUILayout.Label("天数：" + Global.Days.Value);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("果子：" + Global.FruitCount.Value);
             GUILayout.EndHorizontal();
         }
     }
