@@ -58,6 +58,7 @@ namespace ProjectIndieFarm
 
         private void Update()
         {
+            // 按下 F 键，跳过一天
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Global.Days.Value++;
@@ -82,21 +83,25 @@ namespace ProjectIndieFarm
                 TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
             }
 
+            // 按下鼠标左键
             if (Input.GetMouseButtonDown(0))
             {
 
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
                 {
                     // 如果没耕地
-                    if (grid[cellPos.x, cellPos.y] == null)
+                    if (grid[cellPos.x, cellPos.y] == null && Global.CurrentToolName.Value == "锄头")
                     {
                         // 耕地、开垦
                         // 设置数据
                         Tilemap.SetTile(cellPos, FindObjectOfType<GridController>().Pen);
                         grid[cellPos.x, cellPos.y] = new SoilData();
                     }
+
+                    return;
+
                     // 已经有耕地
-                    else if (grid[cellPos.x, cellPos.y].HasPlant != true)
+                    if (grid[cellPos.x, cellPos.y].HasPlant != true)
                     {
                         // 放种子
                         GameObject plantObj = ResController.Instance.PlantPrefab
@@ -124,6 +129,7 @@ namespace ProjectIndieFarm
                 }
             }
 
+            // 按下鼠标右键
             if (Input.GetMouseButtonDown(1))
             {
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
@@ -157,9 +163,23 @@ namespace ProjectIndieFarm
                 }
             }
 
+            // 按下回车键
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                // 切换到通关场景
                 SceneManager.LoadScene("GamePass");
+            }
+
+            // 按下数字 1 键
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Global.CurrentToolName.Value = "手";
+            }
+
+            // 按下数字 2 键
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Global.CurrentToolName.Value = "锄头";
             }
         }
 
@@ -179,7 +199,12 @@ namespace ProjectIndieFarm
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("下一天：F");
+            GUILayout.Label("撒种子：鼠标左键");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("铲除地块：鼠标右键");
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
@@ -189,13 +214,15 @@ namespace ProjectIndieFarm
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("撒种子：鼠标左键");
+            GUILayout.Label("下一天：F");
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("铲除地块：鼠标右键");
+            GUILayout.Label($"当前工具：{Global.CurrentToolName.Value}");
             GUILayout.EndHorizontal();
+
+            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头");
         }
     }
 }
