@@ -82,7 +82,7 @@ namespace ProjectIndieFarm
                 TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
             }
 
-            if (Input.GetKeyDown(KeyCode.J) || Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
 
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
@@ -115,7 +115,8 @@ namespace ProjectIndieFarm
                     {
                         if (grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe)
                         {
-                            PlantController.Instance.Plants[cellPos.x, cellPos.y].SetState(PlantState.Old);
+                            Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
+                            grid[cellPos.x, cellPos.y].HasPlant = false;
                             Global.FruitCount.Value++;
                         }
                     }
@@ -155,6 +156,11 @@ namespace ProjectIndieFarm
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene("GamePass");
+            }
         }
 
         private void OnGUI()
@@ -169,6 +175,26 @@ namespace ProjectIndieFarm
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
             GUILayout.Label("果子：" + Global.FruitCount.Value);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("下一天：F");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("浇水：E");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("撒种子：鼠标左键");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("铲除地块：鼠标右键");
             GUILayout.EndHorizontal();
         }
     }
