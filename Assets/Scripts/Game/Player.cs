@@ -1,6 +1,9 @@
 using UnityEngine;
 using QFramework;
 using UnityEngine.Tilemaps;
+using HutongGames.PlayMaker.Actions;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace ProjectIndieFarm
 {
@@ -9,8 +12,41 @@ namespace ProjectIndieFarm
         public Grid Grid;
         public Tilemap Tilemap;
 
+        private void Start()
+        {
+            Debug.Log("游戏开始（玩家）");
+
+            Global.Days.Register(day =>
+            {
+                var seeds = SceneManager.GetActiveScene()   // 获取当前场景
+                    .GetRootGameObjects()   // 获取根目录下物体
+                    .Where(gameObj => gameObj.name.StartsWith("Seed")); // 获取名称前几个字符为“Seed”的物体
+
+                seeds.ForEach(seed =>
+                {
+                    Vector3Int tilePos = Grid.WorldToCell(seed.transform.position);
+
+                    SoilData tileData = FindObjectOfType<GridController>().ShowGrid[tilePos.x, tilePos.y];
+
+                    if (tileData != null && tileData.Watered)
+                    {
+                        ResController.Instance.SmallPlantPrefab.Instantiate()   // 生成小植物
+                            .Position(seed.transform.position); // 设置其位置
+
+                        seed.DestroySelf();
+                    }
+                });
+
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Global.Days.Value++;
+            }
+
             // 根据角色的位置，拿到 Tilemap 的具体块
             Vector3Int cellPos = Grid.WorldToCell(transform.position);
 
@@ -88,6 +124,16 @@ namespace ProjectIndieFarm
                     }
                 }
             }
+        }
+
+        private void OnGUI()
+        {
+            IMGUIHelper.SetDesignResolution(640, 360);
+            GUILayout.Space(10);
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("天数：" + Global.Days.Value);
+            GUILayout.EndHorizontal();
         }
     }
 }

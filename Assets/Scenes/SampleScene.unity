@@ -643,6 +643,18 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 312406097}
+    Ordinal: 7
+    Priority: 0
+    IconType: 125150
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &275943086
 Transform:
   m_ObjectHideFlags: 0
@@ -709,6 +721,7 @@ MonoBehaviour:
   PrefabFolder: Assets/Art/Prefab
   SeedPrefab: {fileID: 5423185322759204647, guid: 0716bc413ae567647977f83b6cfe8337, type: 3}
   WaterPrefab: {fileID: 3324909756724780903, guid: 69d8b0b8a28703d419866fda4fef2ba0, type: 3}
+  SmallPlantPrefab: {fileID: 2067381288245102799, guid: d74a9fd2761528e4f9811cdb37de142a, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
