@@ -88,6 +88,21 @@ namespace ProjectIndieFarm
                     TileSelectController.Instance.Position(tileWorldPos);
                     TileSelectController.Instance.Show();
                 }
+                else if (grid[cellPos.x, cellPos.y] != null &&
+                    grid[cellPos.x, cellPos.y].Watered != true &&
+                    Global.CurrentTool.Value == Constant.TOOL_WATERING_SCAN)
+                {
+                    TileSelectController.Instance.Position(tileWorldPos);
+                    TileSelectController.Instance.Show();
+                }
+                else if (grid[cellPos.x, cellPos.y] != null &&
+                    grid[cellPos.x, cellPos.y].HasPlant &&
+                    grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe &&
+                    Global.CurrentTool.Value == Constant.TOOL_HAND)
+                {
+                    TileSelectController.Instance.Position(tileWorldPos);
+                    TileSelectController.Instance.Show();
+                }
                 else
                 {
                     TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
@@ -130,20 +145,26 @@ namespace ProjectIndieFarm
 
                         grid[cellPos.x, cellPos.y].HasPlant = true;
                     }
-
-                    return;
-
-                    // 摘取果子
-                    if (grid[cellPos.x, cellPos.y].HasPlant)
+                    else if (grid[cellPos.x, cellPos.y] != null &&
+                        grid[cellPos.x, cellPos.y].Watered != true &&
+                        Global.CurrentTool.Value == Constant.TOOL_WATERING_SCAN)
                     {
-                        if (grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe)
-                        {
-                            Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
-                            grid[cellPos.x, cellPos.y].HasPlant = false;
-                            Global.FruitCount.Value++;
-                        }
-                    }
+                        // 浇水
+                        ResController.Instance.WaterPrefab
+                            .Instantiate()
+                            .Position(tileWorldPos);
 
+                        grid[cellPos.x, cellPos.y].Watered = true;
+                    }
+                    // 摘取果子
+                    else if (grid[cellPos.x, cellPos.y].HasPlant &&
+                        grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe &&
+                        Global.CurrentTool.Value == Constant.TOOL_HAND)
+                    {
+                        Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
+                        grid[cellPos.x, cellPos.y].HasPlant = false;
+                        Global.FruitCount.Value++;
+                    }
                 }
             }
 
@@ -162,25 +183,6 @@ namespace ProjectIndieFarm
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
-                {
-                    if (grid[cellPos.x, cellPos.y] != null)
-                    {
-                        if (grid[cellPos.x, cellPos.y].Watered != true)
-                        {
-                            // 浇水
-                            ResController.Instance.WaterPrefab
-                                .Instantiate()
-                                .Position(tileWorldPos);
-
-                            grid[cellPos.x, cellPos.y].Watered = true;
-                        }
-                    }
-                }
-            }
-
             // 按下回车键
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -188,22 +190,28 @@ namespace ProjectIndieFarm
                 SceneManager.LoadScene("GamePass");
             }
 
-            // 按下数字 1 键
+            // 按下数字 1 键，手
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HAND;
             }
 
-            // 按下数字 2 键
+            // 按下数字 2 键，锄头
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HOE;
             }
 
-            // 按下数字 3 键
+            // 按下数字 3 键，种子
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Global.CurrentTool.Value = Constant.TOOL_SEED;
+            }
+
+            // 按下数字 4 键，花洒
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Global.CurrentTool.Value = Constant.TOOL_WATERING_SCAN;
             }
         }
 
@@ -246,7 +254,7 @@ namespace ProjectIndieFarm
             GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
             GUILayout.EndHorizontal();
 
-            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子");
+            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子  [4] 花洒");
         }
     }
 }

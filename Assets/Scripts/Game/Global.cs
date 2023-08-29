@@ -42,6 +42,10 @@ namespace ProjectIndieFarm
         /// 种子
         /// </summary>
         public const string TOOL_SEED = "seed";
+        /// <summary>
+        /// 花洒
+        /// </summary>
+        public const string TOOL_WATERING_SCAN = "watering_scan";
 
         public static string DisplayName(string toolName)
         {
@@ -58,6 +62,9 @@ namespace ProjectIndieFarm
 
                 case TOOL_SEED:
                     return "种子";
+
+                case TOOL_WATERING_SCAN:
+                    return "花洒";
 
                 default:
                     return "空";
