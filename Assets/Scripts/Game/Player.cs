@@ -75,12 +75,27 @@ namespace ProjectIndieFarm
 
             if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
             {
-                TileSelectController.Instance.Position(tileWorldPos);
-                TileSelectController.Instance.Show();
+                if (grid[cellPos.x, cellPos.y] == null &&
+                    Global.CurrentTool.Value == Constant.TOOL_HOE)
+                {
+                    TileSelectController.Instance.Position(tileWorldPos);
+                    TileSelectController.Instance.Show();   // .Show() 封装了 gameObject.SetActive(true)
+                }
+                else if (grid[cellPos.x, cellPos.y] != null &&
+                    grid[cellPos.x, cellPos.y].HasPlant != true &&
+                    Global.CurrentTool.Value == Constant.TOOL_SEED)
+                {
+                    TileSelectController.Instance.Position(tileWorldPos);
+                    TileSelectController.Instance.Show();
+                }
+                else
+                {
+                    TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
+                }
             }
             else
             {
-                TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
+                TileSelectController.Instance.Hide();
             }
 
             // 按下鼠标左键
@@ -90,18 +105,18 @@ namespace ProjectIndieFarm
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
                 {
                     // 如果没耕地
-                    if (grid[cellPos.x, cellPos.y] == null && Global.CurrentToolName.Value == "锄头")
+                    if (grid[cellPos.x, cellPos.y] == null &&
+                        Global.CurrentTool.Value == Constant.TOOL_HOE)
                     {
                         // 耕地、开垦
                         // 设置数据
                         Tilemap.SetTile(cellPos, FindObjectOfType<GridController>().Pen);
                         grid[cellPos.x, cellPos.y] = new SoilData();
                     }
-
-                    return;
-
                     // 已经有耕地
-                    if (grid[cellPos.x, cellPos.y].HasPlant != true)
+                    else if (grid[cellPos.x, cellPos.y] != null &&
+                        grid[cellPos.x, cellPos.y].HasPlant != true &&
+                        Global.CurrentTool.Value == Constant.TOOL_SEED)
                     {
                         // 放种子
                         GameObject plantObj = ResController.Instance.PlantPrefab
@@ -115,8 +130,11 @@ namespace ProjectIndieFarm
 
                         grid[cellPos.x, cellPos.y].HasPlant = true;
                     }
+
+                    return;
+
                     // 摘取果子
-                    else if (grid[cellPos.x, cellPos.y].HasPlant)
+                    if (grid[cellPos.x, cellPos.y].HasPlant)
                     {
                         if (grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe)
                         {
@@ -173,13 +191,19 @@ namespace ProjectIndieFarm
             // 按下数字 1 键
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Global.CurrentToolName.Value = "手";
+                Global.CurrentTool.Value = Constant.TOOL_HAND;
             }
 
             // 按下数字 2 键
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Global.CurrentToolName.Value = "锄头";
+                Global.CurrentTool.Value = Constant.TOOL_HOE;
+            }
+
+            // 按下数字 3 键
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Global.CurrentTool.Value = Constant.TOOL_SEED;
             }
         }
 
@@ -219,10 +243,10 @@ namespace ProjectIndieFarm
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label($"当前工具：{Global.CurrentToolName.Value}");
+            GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
             GUILayout.EndHorizontal();
 
-            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头");
+            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子");
         }
     }
 }

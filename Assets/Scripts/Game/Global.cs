@@ -17,6 +17,51 @@ namespace ProjectIndieFarm
         /// <summary>
         /// 当前工具名称
         /// </summary>
-        public static BindableProperty<string> CurrentToolName = new BindableProperty<string>("手");
+        public static BindableProperty<string> CurrentTool = new BindableProperty<string>(Constant.TOOL_HAND);
+
+    }
+
+    /// <summary>
+    /// 常量
+    /// </summary>
+    public class Constant
+    {
+        /// <summary>
+        /// 手
+        /// </summary>
+        public const string TOOL_HAND = "hand";
+        /// <summary>
+        /// 锄头
+        /// </summary>
+        public const string TOOL_HOE = "hoe";
+        /// <summary>
+        /// 铁锹
+        /// </summary>
+        public const string TOOL_SHOVEL = "shovel";
+        /// <summary>
+        /// 种子
+        /// </summary>
+        public const string TOOL_SEED = "seed";
+
+        public static string DisplayName(string toolName)
+        {
+            switch (toolName)
+            {
+                case TOOL_HAND:
+                    return "手";
+
+                case TOOL_HOE:
+                    return "锄头";
+
+                case TOOL_SHOVEL:
+                    return "铁锹";
+
+                case TOOL_SEED:
+                    return "种子";
+
+                default:
+                    return "空";
+            }
+        }
     }
 }
