@@ -1,7 +1,6 @@
 using UnityEngine;
 using QFramework;
 using UnityEngine.Tilemaps;
-using HutongGames.PlayMaker.Actions;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
@@ -18,24 +17,56 @@ namespace ProjectIndieFarm
 
             Global.Days.Register(day =>
             {
+                EasyGrid<SoilData> soilDatas = FindAnyObjectByType<GridController>().ShowGrid;
+
+                var smallPlants = SceneManager.GetActiveScene()   // 获取当前场景
+                .GetRootGameObjects()   // 获取根目录下物体
+                .Where(gameObj => gameObj.name.StartsWith("SmallPlant"));   // 获取名称前几个字符为“SmallPlant”的物体
+
+                smallPlants.ForEach(smallPlant =>
+                {
+                    Vector3Int tilePos = Grid.WorldToCell(smallPlant.transform.position);
+
+                    SoilData tileData = soilDatas[tilePos.x, tilePos.y];
+
+                    if (tileData != null && tileData.Watered)
+                    {
+                        ResController.Instance.RipePlantPrefab.Instantiate()   // 生成小植物
+                        .Position(smallPlant.transform.position); // 设置其位置
+
+                        smallPlant.DestroySelf();
+                    }
+                });
+
                 var seeds = SceneManager.GetActiveScene()   // 获取当前场景
-                    .GetRootGameObjects()   // 获取根目录下物体
-                    .Where(gameObj => gameObj.name.StartsWith("Seed")); // 获取名称前几个字符为“Seed”的物体
+                .GetRootGameObjects()   // 获取根目录下物体
+                .Where(gameObj => gameObj.name.StartsWith("Seed")); // 获取名称前几个字符为“Seed”的物体
 
                 seeds.ForEach(seed =>
                 {
                     Vector3Int tilePos = Grid.WorldToCell(seed.transform.position);
 
-                    SoilData tileData = FindObjectOfType<GridController>().ShowGrid[tilePos.x, tilePos.y];
+                    SoilData tileData = soilDatas[tilePos.x, tilePos.y];
 
                     if (tileData != null && tileData.Watered)
                     {
                         ResController.Instance.SmallPlantPrefab.Instantiate()   // 生成小植物
-                            .Position(seed.transform.position); // 设置其位置
+                        .Position(seed.transform.position); // 设置其位置
 
                         seed.DestroySelf();
                     }
                 });
+
+                soilDatas.ForEach(soilData =>
+                {
+                    if (soilData != null)
+                        soilData.Watered = false;
+                });
+
+                SceneManager.GetActiveScene()   // 获取当前场景
+                .GetRootGameObjects()   // 获取根目录下物体
+                .Where(gameObj => gameObj.name.StartsWith("Water")) // 获取名称前几个字符为“Water”的物体
+                .ForEach(water => water.DestroySelf()); // 遍历他们，并将他们销毁
 
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
