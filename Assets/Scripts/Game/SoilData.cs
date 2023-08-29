@@ -12,5 +12,10 @@ namespace ProjectIndieFarm
         /// 有水
         /// </summary>
         public bool Watered { get; set; } = false;
+
+        /// <summary>
+        /// 植物状态
+        /// </summary>
+        public PlantState PlantState { get; set; } = PlantState.Seed;
     }
 }

@@ -723,6 +723,59 @@ MonoBehaviour:
   WaterPrefab: {fileID: 3324909756724780903, guid: 69d8b0b8a28703d419866fda4fef2ba0, type: 3}
   SmallPlantPrefab: {fileID: 2067381288245102799, guid: d74a9fd2761528e4f9811cdb37de142a, type: 3}
   RipePlantPrefab: {fileID: 2482938059829225227, guid: 0c5bc666408ecef4d8de9f8d8201ceec, type: 3}
+  PlantPrefab: {fileID: 2067381288245102799, guid: c4c904c1a98e1e9428f2030fee603480, type: 3}
+  SeedSprite: {fileID: -7866928900747384746, guid: b6061dc8f91da3f4c8cfce5838f98dc1, type: 3}
+  SmallPlantSprite: {fileID: -8902951029311973782, guid: 1175bd1bb0944e54e981becdb557120b, type: 3}
+  RipeSprite: {fileID: -4510322533331877448, guid: b32f48464123d1846836f06867c2981c, type: 3}
+--- !u!1 &324970586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 324970588}
+  - component: {fileID: 324970587}
+  m_Layer: 0
+  m_Name: PlantController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &324970587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324970586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03e3c7fbb5c7ea4399583487bba6c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Namespace: ProjectIndieFarm
+  ScriptName: PlantController
+  ScriptsFolder: Assets/Scripts/Game
+  GeneratePrefab: 0
+  PrefabFolder: Assets/Art/Prefab
+--- !u!4 &324970588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324970586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
