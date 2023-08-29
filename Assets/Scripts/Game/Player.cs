@@ -69,6 +69,25 @@ namespace ProjectIndieFarm
                     }
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
+                {
+                    if (grid[cellPos.x, cellPos.y] != null)
+                    {
+                        if (grid[cellPos.x, cellPos.y].Watered != true)
+                        {
+                            // ½½Ë®
+                            ResController.Instance.WaterPrefab
+                                .Instantiate()
+                                .Position(tileWorldPos);
+
+                            grid[cellPos.x, cellPos.y].Watered = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }
