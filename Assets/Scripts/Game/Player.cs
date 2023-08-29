@@ -11,12 +11,27 @@ namespace ProjectIndieFarm
 
         private void Update()
         {
+            // 根据角色的位置，拿到 Tilemap 的具体块
+            Vector3Int cellPos = Grid.WorldToCell(transform.position);
+
+            EasyGrid<SoilData> grid = FindObjectOfType<GridController>().ShowGrid;
+
+            Vector3 tileWorldPos = Grid.CellToWorld(cellPos);
+            tileWorldPos.x += Grid.cellSize.x * 0.5f;
+            tileWorldPos.y += Grid.cellSize.y * 0.5f;
+
+            if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
+            {
+                TileSelectController.Instance.Position(tileWorldPos);
+                TileSelectController.Instance.Show();
+            }
+            else
+            {
+                TileSelectController.Instance.Hide();   // .Hide() 封装了 gameObject.SetActive(false)
+            }
+
             if (Input.GetKeyDown(KeyCode.J) || Input.GetMouseButtonDown(0))
             {
-                // 根据角色的位置，拿到 Tilemap 的具体块
-                Vector3Int cellPos = Grid.WorldToCell(transform.position);
-
-                var grid = FindObjectOfType<GridController>().ShowGrid;
 
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
                 {
@@ -32,10 +47,6 @@ namespace ProjectIndieFarm
                     else if (grid[cellPos.x, cellPos.y].HasPlant != true)
                     {
                         // 放种子
-                        Vector3 tileWorldPos = Grid.CellToWorld(cellPos);
-                        tileWorldPos.x += Grid.cellSize.x * 0.5f;
-                        tileWorldPos.y += Grid.cellSize.y * 0.5f;
-
                         ResController.Instance.SeedPrefab
                             .Instantiate()
                             .Position(tileWorldPos);
@@ -47,11 +58,6 @@ namespace ProjectIndieFarm
 
             if (Input.GetMouseButtonDown(1))
             {
-                // 根据角色的位置，拿到 Tilemap 的具体块
-                Vector3Int cellPos = Grid.WorldToCell(transform.position);
-
-                var grid = FindObjectOfType<GridController>().ShowGrid;
-
                 if (cellPos.x < 10 && cellPos.x >= 0 && cellPos.y < 10 && cellPos.y >= 0)
                 {
                     if (grid[cellPos.x, cellPos.y] != null)
