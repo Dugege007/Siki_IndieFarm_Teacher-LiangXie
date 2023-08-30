@@ -1,27 +1,50 @@
 using UnityEngine;
 using QFramework;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace ProjectIndieFarm
 {
-	public partial class GameController : ViewController
-	{
-		private void Start()
-		{
-			//Global.FruitCount.Register(fruitCount =>
-			//{
-			//	if (fruitCount == 1)
-			//	{
-			//		// 游戏通关
-			//		// 延时跳转场景
-			//		ActionKit.Delay(1f, () =>
-			//		{
-			//			SceneManager.LoadScene("GamePass");
+    public partial class GameController : ViewController
+    {
+        private void Start()
+        {
+            Global.OnChallengeFinish.Register(challenge =>
+            {
+                Debug.Log("@@@@" + challenge.GetType().Name + "挑战完成");
 
-			//		}).Start(this);
-			//	}
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
 
-			//}).UnRegisterWhenGameObjectDestroyed(gameObject);
-		}
-	}
+        private void Update()
+        {
+            Global.Challenges
+                .Where(challenge => challenge.State != Challenge.States.Finished)
+                .ForEach(challenge =>
+            {
+                switch (challenge.State)
+                {
+                    case Challenge.States.NotStart:
+                        challenge.OnStart();
+                        challenge.State = Challenge.States.Started;
+                        break;
+
+                    case Challenge.States.Started:
+                        if (challenge.CheckFinsh())
+                        {
+                            challenge.OnFinish();
+                            challenge.State = Challenge.States.Finished;
+                            Global.OnChallengeFinish.Trigger(challenge);
+                        }
+                        break;
+
+                    case Challenge.States.Finished:
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+        }
+    }
 }

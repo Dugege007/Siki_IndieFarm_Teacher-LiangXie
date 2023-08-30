@@ -1,4 +1,5 @@
 using QFramework;
+using System.Collections.Generic;
 
 namespace ProjectIndieFarm
 {
@@ -19,7 +20,23 @@ namespace ProjectIndieFarm
         /// </summary>
         public static BindableProperty<string> CurrentTool = new BindableProperty<string>(Constant.TOOL_HAND);
 
-        public static int RipeAndHarvestCountInCurrentDay = 0;
+        /// <summary>
+        /// 当天成熟并收割的数量
+        /// </summary>
+        public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new BindableProperty<int>(0);
+
+        public static List<Challenge> Challenges = new List<Challenge>()
+        {
+            new ChallengeRipeAndHarvestTwoFruitsInOneDay(),
+        };
+
+        /// <summary>
+        /// 植物收割
+        /// </summary>
+        public static EasyEvent<Plant> OnPlantHarvest = new EasyEvent<Plant>();
+
+
+        public static EasyEvent<Challenge> OnChallengeFinish = new EasyEvent<Challenge>();
     }
 
     /// <summary>
