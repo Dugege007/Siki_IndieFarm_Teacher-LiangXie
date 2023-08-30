@@ -8,20 +8,20 @@ namespace ProjectIndieFarm
 	{
 		private void Start()
 		{
-			Global.FruitCount.Register(fruitCount =>
-			{
-				if (fruitCount == 1)
-				{
-					// 游戏通关
-					// 延时跳转场景
-					ActionKit.Delay(1f, () =>
-					{
-						SceneManager.LoadScene("GamePass");
+			//Global.FruitCount.Register(fruitCount =>
+			//{
+			//	if (fruitCount == 1)
+			//	{
+			//		// 游戏通关
+			//		// 延时跳转场景
+			//		ActionKit.Delay(1f, () =>
+			//		{
+			//			SceneManager.LoadScene("GamePass");
 
-					}).Start(this);
-				}
+			//		}).Start(this);
+			//	}
 
-			}).UnRegisterWhenGameObjectDestroyed(gameObject);
+			//}).UnRegisterWhenGameObjectDestroyed(gameObject);
 		}
 	}
 }

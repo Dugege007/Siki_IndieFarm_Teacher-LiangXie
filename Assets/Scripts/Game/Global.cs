@@ -19,6 +19,7 @@ namespace ProjectIndieFarm
         /// </summary>
         public static BindableProperty<string> CurrentTool = new BindableProperty<string>(Constant.TOOL_HAND);
 
+        public static int RipeAndHarvestCountInCurrentDay = 0;
     }
 
     /// <summary>

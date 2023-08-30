@@ -17,6 +17,9 @@ namespace ProjectIndieFarm
 
             Global.Days.Register(day =>
             {
+                // 天数变更开始时重置每天成熟的果子
+                Global.RipeAndHarvestCountInCurrentDay = 0;
+
                 EasyGrid<SoilData> soilDatas = FindAnyObjectByType<GridController>().ShowGrid;
 
                 PlantController.Instance.Plants.ForEach((x, y, plant) =>
@@ -156,11 +159,25 @@ namespace ProjectIndieFarm
 
                         grid[cellPos.x, cellPos.y].Watered = true;
                     }
-                    // 摘取果子
-                    else if (grid[cellPos.x, cellPos.y].HasPlant &&
+                    // 已结果
+                    else if (grid[cellPos.x, cellPos.y] != null &&
+                        grid[cellPos.x, cellPos.y].HasPlant &&
                         grid[cellPos.x, cellPos.y].PlantState == PlantState.Ripe &&
                         Global.CurrentTool.Value == Constant.TOOL_HAND)
                     {
+                        if (PlantController.Instance.Plants[cellPos.x, cellPos.y].RipeDay == Global.Days.Value)
+                        {
+                            Global.RipeAndHarvestCountInCurrentDay++;
+                            if (Global.RipeAndHarvestCountInCurrentDay >= 2)
+                            {
+                                ActionKit.Delay(1.0f, () =>
+                                {
+                                    SceneManager.LoadScene("GamePass");
+                                }).Start(this);
+                            }
+                        }
+
+                        // 摘取果子
                         Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
                         grid[cellPos.x, cellPos.y].HasPlant = false;
                         Global.FruitCount.Value++;

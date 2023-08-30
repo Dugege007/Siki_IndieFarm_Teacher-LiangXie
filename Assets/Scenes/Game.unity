@@ -644,7 +644,7 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
-    Name: 
+    Name: /ResController
     GameObject: {fileID: 312406097}
     Ordinal: 7
     Priority: 0
@@ -656,7 +656,7 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
-    Name: 
+    Name: /GameController
     GameObject: {fileID: 348644880}
     Ordinal: 8
     Priority: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
-    Name: 
+    Name: /PlantController
     GameObject: {fileID: 324970586}
     Ordinal: 9
     Priority: 0
@@ -724,7 +724,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &312406099
 MonoBehaviour:
@@ -796,7 +796,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &348644880
 GameObject:
@@ -1213,7 +1213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1102791513
 MonoBehaviour:
