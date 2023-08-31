@@ -12,7 +12,7 @@ namespace ProjectIndieFarm
 
         public States State = States.NotStart;
 
-        public string Name;
+        public abstract string Name { get; }
 
         public abstract void OnStart();
 

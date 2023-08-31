@@ -10,6 +10,8 @@ namespace ProjectIndieFarm
     {
         public List<IUnRegister> UnregisterList { get; } = new List<IUnRegister>();
 
+        public override string Name { get; } = "一天内成熟并收获五个果子";
+
         public override void OnStart()
         {
 

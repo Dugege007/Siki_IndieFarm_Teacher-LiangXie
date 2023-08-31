@@ -20,10 +20,10 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: GameController
+    ClassName: ChallengeController
     Namespace: ProjectIndieFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectIndieFarm\r\n{\r\n\tpublic
-      partial class GameController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class ChallengeController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:3ab52bae-61d3-438c-aec3-4a5edc1d9cf2\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectIndieFarm\r\n{\r\n\tpublic partial class GameController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:7847b36f-a199-43e5-b30b-47a54cbe6eca\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectIndieFarm\r\n{\r\n\tpublic partial class ChallengeController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
