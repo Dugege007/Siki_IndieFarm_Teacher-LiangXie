@@ -26,16 +26,37 @@ namespace ProjectIndieFarm
         public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new BindableProperty<int>(0);
 
         /// <summary>
+        /// 当天收获的数量
+        /// </summary>
+        public static BindableProperty<int> HarvestCountInCurrentDay = new BindableProperty<int>(0);
+
+        /// <summary>
         /// 挑战列表
         /// </summary>
         public static List<Challenge> Challenges = new List<Challenge>()
         {
             // 收获第一个果子
-            new ChallengeHarvestFirstFruit(),
+            new ChallengeHarvestOneFruit(),
             // 一天内成熟并收获两个果子
-            new ChallengeRipeAndHarvestTwoFruitsInOneDay(),
+            new ChallengeRipeAndHarvestTwoFruitsInADay(),
             // 一天内成熟并收获五个果子
-            new ChallengeRipeAndHarvestFiveFruitsInOneDay(),
+            new ChallengeRipeAndHarvestFiveFruitsInADay(),
+        };
+
+        /// <summary>
+        /// 已激活的挑战列表
+        /// </summary>
+        public static List<Challenge> ActiveChallenges = new List<Challenge>()
+        {
+
+        };
+
+        /// <summary>
+        /// 已完成的挑战列表
+        /// </summary>
+        public static List<Challenge> FinishedChallenges = new List<Challenge>()
+        {
+
         };
 
         /// <summary>

@@ -12,6 +12,8 @@ namespace ProjectIndieFarm
 
         public States State = States.NotStart;
 
+        public int StartDate = 0;
+
         public abstract string Name { get; }
 
         public abstract void OnStart();

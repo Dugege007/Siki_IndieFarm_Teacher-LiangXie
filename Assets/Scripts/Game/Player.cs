@@ -19,6 +19,7 @@ namespace ProjectIndieFarm
             {
                 // 天数变更开始时重置每天成熟的果子
                 Global.RipeAndHarvestCountInCurrentDay.Value = 0;
+                Global.HarvestCountInCurrentDay.Value = 0;
 
                 EasyGrid<SoilData> soilDatas = FindAnyObjectByType<GridController>().ShowGrid;
 
@@ -166,6 +167,8 @@ namespace ProjectIndieFarm
                         Global.CurrentTool.Value == Constant.TOOL_HAND)
                     {
                         Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
+
+                        Global.HarvestCountInCurrentDay.Value++;
 
                         // 摘取果子
                         Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);

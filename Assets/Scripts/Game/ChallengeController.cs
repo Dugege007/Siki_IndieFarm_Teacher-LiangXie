@@ -11,22 +11,24 @@ namespace ProjectIndieFarm
 
             GUI.Label(new Rect(960 - 300, 0, 300, 24), "@@ ÃÙ’Ω @@");
 
-            for (int i = 0; i < Global.Challenges.Count; i++)
+            for (int i = 0; i < Global.ActiveChallenges.Count; i++)
             {
-                Challenge challenge = Global.Challenges[i];
+                Challenge challenge = Global.ActiveChallenges[i];
 
-                if(challenge.State == Challenge.States.Finished)
+                GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), (i + 1) + ". " + challenge.Name);
+
+                if (challenge.State == Challenge.States.Finished)
                 {
-                    GUI.Label(new Rect(960 - 300, 20 + i * 26, 300, 24),
-                        "<color=green>" + i + ". " + challenge.Name + "</color>");
-                }
-                else
-                {
-                    GUI.Label(new Rect(960 - 300, 20 + i * 26, 300, 24),
-                        i + ". " + challenge.Name);
+                    GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), "<color=green>" + i + ". " + challenge.Name + "</color>");
                 }
             }
 
+            for (int i = 0; i < Global.FinishedChallenges.Count; i++)
+            {
+                Challenge challenge = Global.FinishedChallenges[i];
+
+                GUI.Label(new Rect(960 - 300, 20 + (i + Global.ActiveChallenges.Count) * 20, 300, 24), "<color=green>" + (i + 1) + ". " + challenge.Name + "</color>");
+            }
         }
     }
 }
