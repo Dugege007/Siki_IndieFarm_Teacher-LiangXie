@@ -167,11 +167,6 @@ namespace ProjectIndieFarm
                     {
                         Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
 
-                        if (PlantController.Instance.Plants[cellPos.x, cellPos.y].RipeDay == Global.Days.Value)
-                        {
-                            Global.RipeAndHarvestCountInCurrentDay.Value++;
-                        }
-
                         // ÕªÈ¡¹û×Ó
                         Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
                         grid[cellPos.x, cellPos.y].HasPlant = false;

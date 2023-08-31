@@ -25,17 +25,27 @@ namespace ProjectIndieFarm
         /// </summary>
         public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new BindableProperty<int>(0);
 
+        /// <summary>
+        /// 挑战列表
+        /// </summary>
         public static List<Challenge> Challenges = new List<Challenge>()
         {
+            // 收获第一个果子
+            new ChallengeHarvestFirstFruit(),
+            // 一天内成熟并收获两个果子
             new ChallengeRipeAndHarvestTwoFruitsInOneDay(),
+            // 一天内成熟并收获五个果子
+            new ChallengeRipeAndHarvestFiveFruitsInOneDay(),
         };
 
         /// <summary>
-        /// 植物收割
+        /// 在植物收割时
         /// </summary>
         public static EasyEvent<Plant> OnPlantHarvest = new EasyEvent<Plant>();
 
-
+        /// <summary>
+        /// 在挑战结束时
+        /// </summary>
         public static EasyEvent<Challenge> OnChallengeFinish = new EasyEvent<Challenge>();
     }
 
