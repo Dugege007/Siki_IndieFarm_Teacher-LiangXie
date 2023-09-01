@@ -25,7 +25,7 @@ namespace ProjectIndieFarm
             // 监听挑战是否完成
             Global.OnChallengeFinish.Register(challenge =>
             {
-                // 如果全部挑战都完成
+                // 如果全部挑战都完成了
                 if (Global.Challenges.All(challenge => challenge.State == Challenge.States.Finished))
                 {
                     // 在 0.5 秒后通关
@@ -35,9 +35,8 @@ namespace ProjectIndieFarm
 
                     }).Start(this);
                 }
-                else
-                {
-                }
+
+                AudioController.Get.SFXChallengeFinish.Play();
 
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }

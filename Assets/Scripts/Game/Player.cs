@@ -66,6 +66,8 @@ namespace ProjectIndieFarm
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Global.Days.Value++;
+
+                AudioController.Get.SFXNextDay.Play();
             }
 
             // 根据角色的位置，拿到 Tilemap 的具体块
@@ -131,6 +133,7 @@ namespace ProjectIndieFarm
                         // 设置数据
                         Tilemap.SetTile(cellPos, FindObjectOfType<GridController>().Pen);
                         grid[cellPos.x, cellPos.y] = new SoilData();
+
                         AudioController.Get.SFXShoveDig.Play();
                     }
                     // 已经有耕地
@@ -149,6 +152,8 @@ namespace ProjectIndieFarm
                         PlantController.Instance.Plants[cellPos.x, cellPos.y] = plantObj.GetComponent<Plant>();
 
                         grid[cellPos.x, cellPos.y].HasPlant = true;
+
+                        AudioController.Get.SFXPutSeed.Play();
                     }
                     else if (grid[cellPos.x, cellPos.y] != null &&
                         grid[cellPos.x, cellPos.y].Watered != true &&
@@ -160,6 +165,8 @@ namespace ProjectIndieFarm
                             .Position(tileWorldPos);
 
                         grid[cellPos.x, cellPos.y].Watered = true;
+
+                        AudioController.Get.SFXWater.Play();
                     }
                     // 已结果
                     else if (grid[cellPos.x, cellPos.y] != null &&
@@ -175,6 +182,8 @@ namespace ProjectIndieFarm
                         Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
                         grid[cellPos.x, cellPos.y].HasPlant = false;
                         Global.FruitCount.Value++;
+
+                        AudioController.Get.SFXHarvest.Play();
                     }
                 }
             }
