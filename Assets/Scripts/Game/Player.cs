@@ -210,33 +210,6 @@ namespace ProjectIndieFarm
                 SceneManager.LoadScene("GamePass");
             }
 
-            // 按下数字 1 键，手
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Global.CurrentTool.Value = Constant.TOOL_HAND;
-                AudioController.Get.SFXTake.Play();
-            }
-
-            // 按下数字 2 键，锄头
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Global.CurrentTool.Value = Constant.TOOL_HOE;
-                AudioController.Get.SFXTake.Play();
-            }
-
-            // 按下数字 3 键，种子
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Global.CurrentTool.Value = Constant.TOOL_SEED;
-                AudioController.Get.SFXTake.Play();
-            }
-
-            // 按下数字 4 键，花洒
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                Global.CurrentTool.Value = Constant.TOOL_WATERING_SCAN;
-                AudioController.Get.SFXTake.Play();
-            }
         }
 
         private void OnGUI()
@@ -273,7 +246,7 @@ namespace ProjectIndieFarm
             GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
             GUILayout.EndHorizontal();
 
-            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子  [4] 花洒");
+            //GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子  [4] 花洒");
         }
     }
 }
