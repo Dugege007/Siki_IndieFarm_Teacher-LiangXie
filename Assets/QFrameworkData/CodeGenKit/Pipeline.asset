@@ -18,12 +18,20 @@ MonoBehaviour:
     GameObject: {fileID: 0}
     From: 0
     NameToFullName: []
-    BindInfos: []
+    BindInfos:
+    - TypeName: UnityEngine.AudioSource
+      PathToRoot: SFXTake
+      MemberName: SFXTake
+    - TypeName: UnityEngine.AudioSource
+      PathToRoot: SFXShoveDig
+      MemberName: SFXShoveDig
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: ChallengeController
+    ClassName: AudioController
     Namespace: ProjectIndieFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectIndieFarm\r\n{\r\n\tpublic
-      partial class ChallengeController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class AudioController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:7847b36f-a199-43e5-b30b-47a54cbe6eca\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectIndieFarm\r\n{\r\n\tpublic partial class ChallengeController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:58a52845-1ea0-4318-b122-f1794e6e118e\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectIndieFarm\r\n{\r\n\tpublic partial class AudioController\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.AudioSource SFXTake;\r\n\r\n\t\tpublic UnityEngine.AudioSource
+      SFXShoveDig;\r\n\r\n\t}\r\n}\r\n"

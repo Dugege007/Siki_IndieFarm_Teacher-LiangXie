@@ -131,6 +131,7 @@ namespace ProjectIndieFarm
                         // 设置数据
                         Tilemap.SetTile(cellPos, FindObjectOfType<GridController>().Pen);
                         grid[cellPos.x, cellPos.y] = new SoilData();
+                        AudioController.Get.SFXShoveDig.Play();
                     }
                     // 已经有耕地
                     else if (grid[cellPos.x, cellPos.y] != null &&
@@ -204,24 +205,28 @@ namespace ProjectIndieFarm
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HAND;
+                AudioController.Get.SFXTake.Play();
             }
 
             // 按下数字 2 键，锄头
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HOE;
+                AudioController.Get.SFXTake.Play();
             }
 
             // 按下数字 3 键，种子
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Global.CurrentTool.Value = Constant.TOOL_SEED;
+                AudioController.Get.SFXTake.Play();
             }
 
             // 按下数字 4 键，花洒
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 Global.CurrentTool.Value = Constant.TOOL_WATERING_SCAN;
+                AudioController.Get.SFXTake.Play();
             }
         }
 
@@ -241,17 +246,12 @@ namespace ProjectIndieFarm
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("撒种子：鼠标左键");
+            GUILayout.Label("使用工具：鼠标左键");
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
             GUILayout.Label("铲除地块：鼠标右键");
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(10);
-            GUILayout.Label("浇水：E");
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
