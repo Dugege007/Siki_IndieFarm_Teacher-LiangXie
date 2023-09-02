@@ -19,25 +19,15 @@ MonoBehaviour:
     From: 0
     NameToFullName: []
     BindInfos:
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: Btn1
-      MemberName: Btn1
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: Btn2
-      MemberName: Btn2
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: Btn3
-      MemberName: Btn3
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: Btn4
-      MemberName: Btn4
+    - TypeName: SpriteRenderer
+      PathToRoot: ToolIcon
+      MemberName: ToolIcon
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: UIToolBar
+    ClassName: Player
     Namespace: ProjectIndieFarm
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectIndieFarm\r\n{\r\n\tpublic
-      partial class UIToolBar : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class Player : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:92f903ab-d1a4-4e31-b299-d19a983de093\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectIndieFarm\r\n{\r\n\tpublic partial class UIToolBar\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.UI.Button Btn1;\r\n\r\n\t\tpublic UnityEngine.UI.Button Btn2;\r\n\r\n\t\tpublic
-      UnityEngine.UI.Button Btn3;\r\n\r\n\t\tpublic UnityEngine.UI.Button Btn4;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:e3cb40d0-96b0-4d3f-b167-7be20ace8562\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectIndieFarm\r\n{\r\n\tpublic partial class Player\r\n\t{\r\n\r\n\t\tpublic
+      SpriteRenderer ToolIcon;\r\n\r\n\t}\r\n}\r\n"

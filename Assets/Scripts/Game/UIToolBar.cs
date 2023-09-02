@@ -1,5 +1,6 @@
 using UnityEngine;
 using QFramework;
+using UnityEngine.UI;
 
 namespace ProjectIndieFarm
 {
@@ -7,10 +8,14 @@ namespace ProjectIndieFarm
 	{
         private void Start()
         {
-            Btn1.onClick.AddListener(() => ChangeTool(Constant.TOOL_HAND));
-            Btn2.onClick.AddListener(() => ChangeTool(Constant.TOOL_HOE));
-            Btn3.onClick.AddListener(() => ChangeTool(Constant.TOOL_SEED));
-            Btn4.onClick.AddListener(() => ChangeTool(Constant.TOOL_WATERING_SCAN));
+            HideAllSelect();
+            Btn1Select.Show();
+            Global.Player.ToolIcon.sprite = Btn1.GetComponentInChildren<Image>().sprite;
+
+            Btn1.onClick.AddListener(() => ChangeTool(Constant.TOOL_HAND, Btn1Select, Btn1.GetComponent<Image>().sprite));
+            Btn2.onClick.AddListener(() => ChangeTool(Constant.TOOL_HOE, Btn2Select, Btn2.GetComponent<Image>().sprite));
+            Btn3.onClick.AddListener(() => ChangeTool(Constant.TOOL_SEED, Btn3Select, Btn3.GetComponent<Image>().sprite));
+            Btn4.onClick.AddListener(() => ChangeTool(Constant.TOOL_WATERING_SCAN, Btn4Select, Btn4.GetComponent<Image>().sprite));
         }
 
         private void Update()
@@ -18,32 +23,44 @@ namespace ProjectIndieFarm
             // 按下数字 1 键，手
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                ChangeTool(Constant.TOOL_HAND);
+                ChangeTool(Constant.TOOL_HAND, Btn1Select, Btn1.GetComponent<Image>().sprite);
             }
 
             // 按下数字 2 键，锄头
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                ChangeTool(Constant.TOOL_HOE);
+                ChangeTool(Constant.TOOL_HOE, Btn2Select, Btn2.GetComponent<Image>().sprite);
             }
 
             // 按下数字 3 键，种子
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                ChangeTool(Constant.TOOL_SEED);
+                ChangeTool(Constant.TOOL_SEED, Btn3Select, Btn3.GetComponent<Image>().sprite);
             }
 
             // 按下数字 4 键，花洒
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                ChangeTool(Constant.TOOL_WATERING_SCAN);
+                ChangeTool(Constant.TOOL_WATERING_SCAN, Btn4Select, Btn4.GetComponent<Image>().sprite);
             }
         }
 
-        private void ChangeTool(string tool)
+        private void ChangeTool(string tool, Image selectImage,Sprite icon)
         {
             Global.CurrentTool.Value = tool;
-            AudioController.Get?.SFXTake.Play();
+            AudioController.Get.SFXTake.Play();
+
+            HideAllSelect();
+            selectImage.Show();
+            Global.Player.ToolIcon.sprite = icon;
+        }
+
+        private void HideAllSelect()
+        {
+            Btn1Select.Hide();
+            Btn2Select.Hide();
+            Btn3Select.Hide();
+            Btn4Select.Hide();
         }
     }
 }

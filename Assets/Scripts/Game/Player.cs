@@ -11,6 +11,11 @@ namespace ProjectIndieFarm
         public Grid Grid;
         public Tilemap Tilemap;
 
+        private void Awake()
+        {
+            Global.Player = this;
+        }
+
         private void Start()
         {
             Debug.Log("游戏开始（玩家）");
@@ -241,12 +246,17 @@ namespace ProjectIndieFarm
             GUILayout.Label("下一天：F");
             GUILayout.EndHorizontal();
 
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(10);
-            GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
-            GUILayout.EndHorizontal();
+            //GUILayout.BeginHorizontal();
+            //GUILayout.Space(10);
+            //GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
+            //GUILayout.EndHorizontal();
 
             //GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1] 手   [2] 锄头  [3] 种子  [4] 花洒");
+        }
+
+        private void OnDestroy()
+        {
+            Global.Player = null;
         }
     }
 }
