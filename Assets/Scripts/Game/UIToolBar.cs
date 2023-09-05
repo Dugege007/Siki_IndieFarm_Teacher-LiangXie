@@ -10,7 +10,7 @@ namespace ProjectIndieFarm
         {
             HideAllSelect();
             Btn1Select.Show();
-            Global.Player.ToolIcon.sprite = Btn1.GetComponentInChildren<Image>().sprite;
+            Global.Mouse.Icon.sprite = Btn1.GetComponentInChildren<Image>().sprite;
 
             Btn1.onClick.AddListener(() => ChangeTool(Constant.TOOL_HAND, Btn1Select, Btn1.GetComponent<Image>().sprite));
             Btn2.onClick.AddListener(() => ChangeTool(Constant.TOOL_HOE, Btn2Select, Btn2.GetComponent<Image>().sprite));
@@ -52,7 +52,7 @@ namespace ProjectIndieFarm
 
             HideAllSelect();
             selectImage.Show();
-            Global.Player.ToolIcon.sprite = icon;
+            Global.Mouse.Icon.sprite = icon;
         }
 
         private void HideAllSelect()

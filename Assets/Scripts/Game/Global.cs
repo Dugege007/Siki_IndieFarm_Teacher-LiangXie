@@ -70,6 +70,7 @@ namespace ProjectIndieFarm
         public static EasyEvent<Challenge> OnChallengeFinish = new EasyEvent<Challenge>();
 
         public static Player Player = null;
+        public static ToolController Mouse = null;
     }
 
     /// <summary>
