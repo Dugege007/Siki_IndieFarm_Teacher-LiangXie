@@ -97,7 +97,30 @@ namespace ProjectIndieFarm
                             Plant plant = plantObj.GetComponent<Plant>();
                             plant.XCell = cellPos.x;
                             plant.YCell = cellPos.y;
-                            PlantController.Instance.Plants[cellPos.x, cellPos.y] = plantObj.GetComponent<Plant>();
+                            PlantController.Instance.Plants[cellPos.x, cellPos.y] = plant;
+
+                            mShowGrid[cellPos.x, cellPos.y].HasPlant = true;
+
+                            AudioController.Get.SFXPutSeed.Play();
+                        }
+                    }
+                    else if (mShowGrid[cellPos.x, cellPos.y] != null &&
+                        mShowGrid[cellPos.x, cellPos.y].HasPlant != true &&
+                        Global.CurrentTool.Value == Constant.TOOL_SEED_RADISH)
+                    {
+                        Vector3 gridCenterPos = ShowSelect(cellPos);
+
+                        // 放种子 萝卜
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            GameObject plantObj = ResController.Instance.PlantRadishPrefab
+                                .Instantiate()
+                                .Position(gridCenterPos);
+
+                            PlantRadish plant = plantObj.GetComponent<PlantRadish>();
+                            plant.XCell = cellPos.x;
+                            plant.YCell = cellPos.y;
+                            PlantController.Instance.Plants[cellPos.x, cellPos.y] = plant;
 
                             mShowGrid[cellPos.x, cellPos.y].HasPlant = true;
 
@@ -134,12 +157,12 @@ namespace ProjectIndieFarm
                         // 摘取果子
                         if (Input.GetMouseButtonDown(0))
                         {
-                            Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
+                            //Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
 
                             Global.HarvestCountInCurrentDay.Value++;
 
                             // 摘取果子
-                            Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].gameObject);
+                            Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].GameObject);
                             mShowGrid[cellPos.x, cellPos.y].HasPlant = false;
                             Global.FruitCount.Value++;
 

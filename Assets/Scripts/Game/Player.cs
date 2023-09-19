@@ -32,22 +32,8 @@ namespace ProjectIndieFarm
                 {
                     if (plant != null)
                     {
-                        if (plant.State == PlantState.Seed)
-                        {
-                            if (soilDatas[x, y].Watered)
-                            {
-                                // 切换到小植物状态
-                                plant.SetState(PlantState.Small);
-                            }
-                        }
-                        else if (plant.State == PlantState.Small)
-                        {
-                            if (soilDatas[x, y].Watered)
-                            {
-                                // 切换到成熟状态
-                                plant.SetState(PlantState.Ripe);
-                            }
-                        }
+                        // 植物生长，传入地块数据
+                        plant.Grow(soilDatas[x, y]);
                     }
                 });
 

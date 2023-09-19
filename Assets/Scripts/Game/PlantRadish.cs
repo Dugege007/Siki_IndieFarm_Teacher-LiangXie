@@ -3,17 +3,7 @@ using QFramework;
 
 namespace ProjectIndieFarm
 {
-    public interface IPlant
-    {
-        GameObject GameObject { get; }
-
-        PlantState State { get; }
-
-        void SetState(PlantState newState);
-        void Grow(SoilData soilData);
-    }
-
-    public partial class Plant : ViewController, IPlant
+    public partial class PlantRadish : ViewController, IPlant
     {
         public int XCell;
         public int YCell;
@@ -43,7 +33,7 @@ namespace ProjectIndieFarm
                 switch (newState)
                 {
                     case PlantState.Seed:
-                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.SeedSprite;
+                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.SeedRadishSprite;
                         break;
 
                     case PlantState.Small:
@@ -68,6 +58,8 @@ namespace ProjectIndieFarm
             }
         }
 
+        private int mSmallStateDay = 0;
+
         public void Grow(SoilData soilData)
         {
             if (State == PlantState.Seed)
@@ -82,8 +74,13 @@ namespace ProjectIndieFarm
             {
                 if (soilData.Watered)
                 {
-                    // ÇÐ»»µ½³ÉÊì×´Ì¬
-                    SetState(PlantState.Ripe);
+                    mSmallStateDay++;
+
+                    if (mSmallStateDay == 2)
+                    {
+                        // ÇÐ»»µ½³ÉÊì×´Ì¬
+                        SetState(PlantState.Ripe);
+                    }
                 }
             }
         }
