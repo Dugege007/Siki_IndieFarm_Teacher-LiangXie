@@ -52,8 +52,8 @@ namespace ProjectIndieFarm
                 cellPos.x - playerCellPos.x == 1 && cellPos.y - playerCellPos.y == 1 ||
                 // ×ó
                 cellPos.x - playerCellPos.x == -1 && cellPos.y - playerCellPos.y == 0 ||
-                // ÖÐ
-                cellPos.x - playerCellPos.x == 0 && cellPos.y - playerCellPos.y == 0 ||
+                //// ÖÐ
+                //cellPos.x - playerCellPos.x == 0 && cellPos.y - playerCellPos.y == 0 ||
                 // ÓÒ
                 cellPos.x - playerCellPos.x == 1 && cellPos.y - playerCellPos.y == 0 ||
                 // ×óÏÂ

@@ -16,6 +16,7 @@ namespace ProjectIndieFarm
             Btn2.onClick.AddListener(() => ChangeTool(Constant.TOOL_HOE, Btn2Select, Btn2.GetComponent<Image>().sprite));
             Btn3.onClick.AddListener(() => ChangeTool(Constant.TOOL_SEED, Btn3Select, Btn3.GetComponent<Image>().sprite));
             Btn4.onClick.AddListener(() => ChangeTool(Constant.TOOL_WATERING_SCAN, Btn4Select, Btn4.GetComponent<Image>().sprite));
+            Btn5.onClick.AddListener(() => ChangeTool(Constant.TOOL_SEED_RADISH, Btn5Select, Btn4.GetComponent<Image>().sprite));
         }
 
         private void Update()
@@ -43,6 +44,12 @@ namespace ProjectIndieFarm
             {
                 ChangeTool(Constant.TOOL_WATERING_SCAN, Btn4Select, Btn4.GetComponent<Image>().sprite);
             }
+
+            // 按下数字 5 键，种子 萝卜
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                ChangeTool(Constant.TOOL_SEED_RADISH, Btn5Select, Btn5.GetComponent<Image>().sprite);
+            }
         }
 
         private void ChangeTool(string tool, Image selectImage,Sprite icon)
@@ -61,6 +68,7 @@ namespace ProjectIndieFarm
             Btn2Select.Hide();
             Btn3Select.Hide();
             Btn4Select.Hide();
+            Btn5Select.Hide();
         }
     }
 }

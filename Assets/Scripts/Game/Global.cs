@@ -98,6 +98,10 @@ namespace ProjectIndieFarm
         /// »¨È÷
         /// </summary>
         public const string TOOL_WATERING_SCAN = "watering_scan";
+        /// <summary>
+        /// ÂÜ²·
+        /// </summary>
+        public const string TOOL_SEED_RADISH = "seed_radish";
 
         public static string DisplayName(string toolName)
         {
@@ -117,6 +121,9 @@ namespace ProjectIndieFarm
 
                 case TOOL_WATERING_SCAN:
                     return "»¨È÷";
+
+                case TOOL_SEED_RADISH:
+                    return "ÂÜ²·";
 
                 default:
                     return "¿Õ";
