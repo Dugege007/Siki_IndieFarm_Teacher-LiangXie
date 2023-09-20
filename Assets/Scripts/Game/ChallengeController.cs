@@ -5,21 +5,32 @@ namespace ProjectIndieFarm
 {
     public partial class ChallengeController : ViewController
     {
+        public Font Font;
+        private GUIStyle mLabelStyle;
+
+        private void Start()
+        {
+            mLabelStyle = new GUIStyle("Label")
+            {
+                font = Font,
+            };
+        }
+
         private void OnGUI()
         {
             IMGUIHelper.SetDesignResolution(960, 540);
 
-            GUI.Label(new Rect(960 - 300, 0, 300, 24), "@@ ÃÙ’Ω @@");
+            GUI.Label(new Rect(960 - 300, 0, 300, 24), "@@ ÃÙ’Ω @@", mLabelStyle);
 
             for (int i = 0; i < Global.ActiveChallenges.Count; i++)
             {
                 Challenge challenge = Global.ActiveChallenges[i];
 
-                GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), (i + 1) + ". " + challenge.Name);
+                GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), (i + 1) + ". " + challenge.Name, mLabelStyle);
 
                 if (challenge.State == Challenge.States.Finished)
                 {
-                    GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), "<color=green>" + i + ". " + challenge.Name + "</color>");
+                    GUI.Label(new Rect(960 - 300, 20 + i * 20, 300, 24), "<color=green>" + i + ". " + challenge.Name + "</color>", mLabelStyle);
                 }
             }
 
@@ -27,7 +38,7 @@ namespace ProjectIndieFarm
             {
                 Challenge challenge = Global.FinishedChallenges[i];
 
-                GUI.Label(new Rect(960 - 300, 20 + (i + Global.ActiveChallenges.Count) * 20, 300, 24), "<color=green>" + (i + 1) + ". " + challenge.Name + "</color>");
+                GUI.Label(new Rect(960 - 300, 20 + (i + Global.ActiveChallenges.Count) * 20, 300, 24), "<color=green>" + (i + 1) + ". " + challenge.Name + "</color>", mLabelStyle);
             }
         }
     }

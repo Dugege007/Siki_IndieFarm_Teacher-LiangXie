@@ -72,7 +72,7 @@ namespace ProjectIndieFarm
                         ShowSelect(cellPos);
 
                         // 耕地、开垦
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButton(0))
                         {
                             // 设置数据
                             mTilemap.SetTile(cellPos, mGridController.Pen);
@@ -88,7 +88,7 @@ namespace ProjectIndieFarm
                         Vector3 gridCenterPos = ShowSelect(cellPos);
 
                         // 放种子
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButton(0))
                         {
                             GameObject plantObj = ResController.Instance.PlantPrefab
                                 .Instantiate()
@@ -111,7 +111,7 @@ namespace ProjectIndieFarm
                         Vector3 gridCenterPos = ShowSelect(cellPos);
 
                         // 放种子 萝卜
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButton(0))
                         {
                             GameObject plantObj = ResController.Instance.PlantRadishPrefab
                                 .Instantiate()
@@ -134,7 +134,7 @@ namespace ProjectIndieFarm
                         Vector3 gridCenterPos = ShowSelect(cellPos);
 
                         // 浇水
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButton(0))
                         {
                             ResController.Instance.WaterPrefab
                                 .Instantiate()
@@ -155,7 +155,7 @@ namespace ProjectIndieFarm
                         ShowSelect(cellPos);
 
                         // 摘取果子
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButton(0))
                         {
                             Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
 

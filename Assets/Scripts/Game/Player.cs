@@ -11,6 +11,9 @@ namespace ProjectIndieFarm
         public Grid Grid;
         public Tilemap Tilemap;
 
+        public Font Font;
+        private GUIStyle mLabelStyle;
+
         private void Awake()
         {
             Global.Player = this;
@@ -18,6 +21,11 @@ namespace ProjectIndieFarm
 
         private void Start()
         {
+            mLabelStyle = new GUIStyle("Label")
+            {
+                font = Font,
+            };
+
             Debug.Log("游戏开始（玩家）");
 
             Global.Days.Register(day =>
@@ -100,32 +108,32 @@ namespace ProjectIndieFarm
             GUILayout.Space(10);
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("天数：" + Global.Days.Value);
+            GUILayout.Label("天数：" + Global.Days.Value, mLabelStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("果子：" + Global.FruitCount.Value);
+            GUILayout.Label("果子：" + Global.FruitCount.Value, mLabelStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("萝卜：" + Global.RadishCount.Value);
+            GUILayout.Label("萝卜：" + Global.RadishCount.Value, mLabelStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("使用工具：鼠标左键");
+            GUILayout.Label("使用工具：鼠标左键", mLabelStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("铲除地块：鼠标右键");
+            GUILayout.Label("铲除地块：鼠标右键", mLabelStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("下一天：F");
+            GUILayout.Label("下一天：F", mLabelStyle);
             GUILayout.EndHorizontal();
 
             //GUILayout.BeginHorizontal();
