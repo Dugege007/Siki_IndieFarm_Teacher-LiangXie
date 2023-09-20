@@ -157,14 +157,18 @@ namespace ProjectIndieFarm
                         // 摘取果子
                         if (Input.GetMouseButtonDown(0))
                         {
-                            //Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
+                            Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
 
                             Global.HarvestCountInCurrentDay.Value++;
 
-                            // 摘取果子
+                            if (PlantController.Instance.Plants[cellPos.x, cellPos.y] as Plant)
+                                Global.FruitCount.Value++;
+                            else if (PlantController.Instance.Plants[cellPos.x, cellPos.y] as PlantRadish)
+                                Global.RadishCount.Value++;
+
+                            // 摘取果实
                             Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].GameObject);
                             mShowGrid[cellPos.x, cellPos.y].HasPlant = false;
-                            Global.FruitCount.Value++;
 
                             AudioController.Get.SFXHarvest.Play();
                         }

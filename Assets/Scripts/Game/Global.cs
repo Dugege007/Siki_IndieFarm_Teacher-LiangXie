@@ -16,6 +16,11 @@ namespace ProjectIndieFarm
         public static BindableProperty<int> FruitCount = new BindableProperty<int>(0);
 
         /// <summary>
+        /// 萝卜数量
+        /// </summary>
+        public static BindableProperty<int> RadishCount = new BindableProperty<int>(0);
+
+        /// <summary>
         /// 当前工具名称
         /// </summary>
         public static BindableProperty<string> CurrentTool = new BindableProperty<string>(Constant.TOOL_HAND);
@@ -62,7 +67,7 @@ namespace ProjectIndieFarm
         /// <summary>
         /// 在植物收割时
         /// </summary>
-        public static EasyEvent<Plant> OnPlantHarvest = new EasyEvent<Plant>();
+        public static EasyEvent<IPlant> OnPlantHarvest = new EasyEvent<IPlant>();
 
         /// <summary>
         /// 在挑战结束时

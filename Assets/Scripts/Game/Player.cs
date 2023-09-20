@@ -110,6 +110,11 @@ namespace ProjectIndieFarm
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
+            GUILayout.Label("萝卜：" + Global.RadishCount.Value);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
             GUILayout.Label("使用工具：鼠标左键");
             GUILayout.EndHorizontal();
 

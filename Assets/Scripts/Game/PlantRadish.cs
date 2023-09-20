@@ -16,7 +16,7 @@ namespace ProjectIndieFarm
         /// <summary>
         /// 成熟的日期（第几天）
         /// </summary>
-        public int RipeDay = -1;
+        public int RipeDay { get; private set; }
 
         public void SetState(PlantState newState)
         {
@@ -37,11 +37,11 @@ namespace ProjectIndieFarm
                         break;
 
                     case PlantState.Small:
-                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.SmallSprite;
+                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.SmallRadishSprite;
                         break;
 
                     case PlantState.Ripe:
-                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.RipeSprite;
+                        GetComponent<SpriteRenderer>().sprite = ResController.Instance.RipeRadishSprite;
                         break;
 
                     case PlantState.Old:

@@ -6,8 +6,8 @@ namespace ProjectIndieFarm
     public interface IPlant
     {
         GameObject GameObject { get; }
-
         PlantState State { get; }
+        int RipeDay { get; }
 
         void SetState(PlantState newState);
         void Grow(SoilData soilData);
@@ -26,7 +26,7 @@ namespace ProjectIndieFarm
         /// <summary>
         /// 成熟的日期（第几天）
         /// </summary>
-        public int RipeDay = -1;
+        public int RipeDay { get; private set; }
 
         public void SetState(PlantState newState)
         {

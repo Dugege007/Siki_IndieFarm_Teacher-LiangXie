@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6257656149191112168, guid: 7908790deb3e5b64a8e5faec432be572, type: 3}
+  m_Sprite: {fileID: 7778150123550600413, guid: 7908790deb3e5b64a8e5faec432be572, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,3 +102,6 @@ MonoBehaviour:
   ScriptsFolder: Assets/Scripts/Game
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
+  XCell: 0
+  YCell: 0
+  RipeDay: -1

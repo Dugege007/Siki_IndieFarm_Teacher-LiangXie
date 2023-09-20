@@ -1206,7 +1206,9 @@ MonoBehaviour:
   SmallSprite: {fileID: 5459219777939841590, guid: 1175bd1bb0944e54e981becdb557120b, type: 3}
   RipeSprite: {fileID: 6028840183448564548, guid: b32f48464123d1846836f06867c2981c, type: 3}
   OldSprite: {fileID: -726498422921735821, guid: 81f7eec9a2a39704e97c8b07e90fe5bd, type: 3}
-  SeedRadishSprite: {fileID: -6257656149191112168, guid: 7908790deb3e5b64a8e5faec432be572, type: 3}
+  SeedRadishSprite: {fileID: 7778150123550600413, guid: 7908790deb3e5b64a8e5faec432be572, type: 3}
+  SmallRadishSprite: {fileID: -6797657372628844577, guid: 955dbc8b11611674494ba0e6693d3b57, type: 3}
+  RipeRadishSprite: {fileID: 8091875632612600180, guid: bfc0f02f18be67d4880a5e4805acb9eb, type: 3}
 --- !u!1 &324970586
 GameObject:
   m_ObjectHideFlags: 0
