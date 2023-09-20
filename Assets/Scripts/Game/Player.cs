@@ -31,10 +31,10 @@ namespace ProjectIndieFarm
             Global.Days.Register(day =>
             {
                 // 天数变更开始时重置每天成熟的果子
-                Global.RipeAndHarvestCountInCurrentDay.Value = 0;
-                Global.RipeAndHarvestRadishCountInCurrentDay.Value = 0;
-                Global.HarvestCountInCurrentDay.Value = 0;
-                Global.HarvestRadishCountInCurrentDay.Value = 0;
+                ChallengeController.RipeAndHarvestCountInCurrentDay.Value = 0;
+                ChallengeController.RipeAndHarvestRadishCountInCurrentDay.Value = 0;
+                ChallengeController.HarvestCountInCurrentDay.Value = 0;
+                ChallengeController.HarvestRadishCountInCurrentDay.Value = 0;
 
                 EasyGrid<SoilData> soilDatas = FindAnyObjectByType<GridController>().ShowGrid;
 

@@ -1,5 +1,4 @@
 using QFramework;
-using System.Collections.Generic;
 
 namespace ProjectIndieFarm
 {
@@ -26,68 +25,9 @@ namespace ProjectIndieFarm
         public static BindableProperty<string> CurrentTool = new BindableProperty<string>(Constant.TOOL_HAND);
 
         /// <summary>
-        /// 当天收获的数量
-        /// </summary>
-        public static BindableProperty<int> HarvestCountInCurrentDay = new BindableProperty<int>(0);
-
-        /// <summary>
-        /// 当天成熟并收割的数量
-        /// </summary>
-        public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new BindableProperty<int>(0);
-
-        /// <summary>
-        /// 当天收割萝卜的数量
-        /// </summary>
-        public static BindableProperty<int> HarvestRadishCountInCurrentDay = new BindableProperty<int>(0);
-
-        /// <summary>
-        /// 当天成熟并收割萝卜的数量
-        /// </summary>
-        public static BindableProperty<int> RipeAndHarvestRadishCountInCurrentDay = new BindableProperty<int>(0);
-
-        /// <summary>
-        /// 挑战列表
-        /// </summary>
-        public static List<Challenge> Challenges = new List<Challenge>()
-        {
-            // 收获一个果子
-            new ChallengeHarvestOneFruit(),
-            // 一天内成熟并收获两个果子
-            new ChallengeRipeAndHarvestTwoFruitsInADay(),
-            // 一天内成熟并收获五个果子
-            new ChallengeRipeAndHarvestFiveFruitsInADay(),
-
-            // 收获一个萝卜
-            new ChallengeHarvestOneRadish(),
-            // 一天内收获一个果子和萝卜
-            new ChallengeRipeAndHarvestFruitAndRadishInOneDay(),
-        };
-
-        /// <summary>
-        /// 已激活的挑战列表
-        /// </summary>
-        public static List<Challenge> ActiveChallenges = new List<Challenge>()
-        {
-
-        };
-
-        /// <summary>
-        /// 已完成的挑战列表
-        /// </summary>
-        public static List<Challenge> FinishedChallenges = new List<Challenge>()
-        {
-
-        };
-
-        /// <summary>
         /// 在植物收割时
         /// </summary>
         public static EasyEvent<IPlant> OnPlantHarvest = new EasyEvent<IPlant>();
-
-        /// <summary>
-        /// 在挑战结束时
-        /// </summary>
-        public static EasyEvent<Challenge> OnChallengeFinish = new EasyEvent<Challenge>();
 
         public static Player Player = null;
         public static ToolController Mouse = null;

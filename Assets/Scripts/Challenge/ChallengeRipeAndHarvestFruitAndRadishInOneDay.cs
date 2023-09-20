@@ -13,8 +13,8 @@ namespace ProjectIndieFarm
         public override bool CheckFinsh()
         {
             return Global.Days.Value != StartDate &&
-                Global.RipeAndHarvestCountInCurrentDay.Value >= 1 &&
-                Global.RipeAndHarvestRadishCountInCurrentDay.Value >= 1;
+                ChallengeController.RipeAndHarvestCountInCurrentDay.Value >= 1 &&
+                ChallengeController.RipeAndHarvestRadishCountInCurrentDay.Value >= 1;
         }
 
         public override void OnFinish()
