@@ -159,12 +159,14 @@ namespace ProjectIndieFarm
                         {
                             Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPos.x, cellPos.y]);
 
-                            Global.HarvestCountInCurrentDay.Value++;
-
-                            if (PlantController.Instance.Plants[cellPos.x, cellPos.y] as Plant)
+                            if (PlantController.Instance.Plants[cellPos.x, cellPos.y] is Plant)
+                            {
                                 Global.FruitCount.Value++;
-                            else if (PlantController.Instance.Plants[cellPos.x, cellPos.y] as PlantRadish)
+                            }
+                            else if (PlantController.Instance.Plants[cellPos.x, cellPos.y] is PlantRadish)
+                            {
                                 Global.RadishCount.Value++;
+                            }
 
                             // ÕªÈ¡¹ûÊµ
                             Destroy(PlantController.Instance.Plants[cellPos.x, cellPos.y].GameObject);
